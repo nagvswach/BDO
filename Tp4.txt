@@ -1,0 +1,113 @@
+TP04
+1.
+SELECT DISTINCT p.Nom
+FROM personne p
+WHERE p.Age > 30;
+
+2.
+SELECT DISTINCT p.Nom
+FROM personne p
+WHERE p.Age < 30 AND p.Sexe = 'F';
+
+3.
+SELECT m.ID_Message
+FROM message m 
+WHERE m.Expediteur = 'P1';
+
+4.
+SELECT DISTINCT p.Nom
+FROM personne p 
+WHERE p.Sexe = 'M'
+ORDER BY p.Nom;
+
+5.
+SELECT DISTINCT m.Contenu
+FROM message m 
+JOIN personne p ON p.SSN = m.Expediteur
+WHERE p.Sexe = 'M';
+
+6.
+SELECT p.Nom
+FROM personne p 
+JOIN destinataires d ON p.SSN = d.Destinataire
+WHERE d.ID_Message = 'M4';
+
+7.
+SELECT DISTINCT m.Contenu
+FROM personne p 
+JOIN destinataires d ON p.SSN = d.Destinataire
+JOIN message m ON m.ID_Message = d.ID_Message
+WHERE p.Sexe = 'F' AND p.Age < 30;
+
+8.
+SELECT p.Nom
+FROM estami e
+JOIN personne p ON p.SSN = e.SSN2
+WHERE e.SSN1 = 'P1';
+
+9.
+SELECT DISTINCT m.Contenu
+FROM message m 
+JOIN personne p ON p.SSN = m.expediteur
+WHERE p.Nom LIKE '%e%';
+
+10.
+SELECT DISTINCT m.Date_Expedition
+FROM personne p 
+JOIN destinataires d ON p.SSN = d.Destinataire
+JOIN message m ON m.ID_Message = d.ID_Message
+WHERE p.Nom LIKE 'm%' AND p.Sexe = 'F';
+
+11.
+SELECT DISTINCT m.Contenu
+FROM message m 
+JOIN personne p ON p.SSN = m.Expediteur
+WHERE p.Nom LIKE '_a%' AND p.Sexe = 'M';
+
+12.
+SELECT exp.*
+FROM personne exp
+JOIN message m ON m.Expediteur = exp.SSN
+JOIN destinataires d ON m.ID_Message = d.ID_Message
+JOIN personne dest ON dest.SSN = d.Destinataire
+WHERE dest.Age < 18;
+
+13.
+SELECT DISTINCT e2.SSN2
+FROM estami e1, estami e2
+WHERE e1.SSN2 = e2.SSN1 AND e1.SSN1 = 'P1';
+
+14.
+SELECT DISTINCT a2.SSN2
+FROM EstAmi a1, EstAmi a2, Personne xavier
+WHERE a1.SSN2 = a2.SSN1
+  AND a1.SSN1 = xavier.SSN
+  AND xavier.Nom = 'Xavier';
+
+15.
+SELECT DISTINCT P1.Nom, P2.Nom
+FROM Personne p1, Personne p2
+WHERE p1.Sexe = 'M' 
+  AND p2.Sexe = 'F';
+
+SELECT DISTINCT P1.Nom, P2.Nom
+FROM Personne p1, Personne p2, EstAmi a
+WHERE a.SSN1 = p1.SSN 
+  AND a.SSN2 = p2.SSN
+  AND p1.Sexe = 'M' 
+  AND p2.Sexe = 'F'
+
+16.
+SELECT DISTINCT P1.Nom, P2.Nom
+FROM Personne p1, Personne p2
+WHERE p1.Sexe = 'M' 
+  AND p2.Sexe = 'F'
+ORDER BY (p1.Age + p2.Age);
+
+SELECT DISTINCT P1.Nom, P2.Nom
+FROM Personne p1, Personne p2, EstAmi a
+WHERE a.SSN1 = p1.SSN 
+  AND a.SSN2 = p2.SSN
+  AND p1.Sexe = 'M' 
+  AND p2.Sexe = 'F'
+ORDER BY (p1.Age + p2.Age);

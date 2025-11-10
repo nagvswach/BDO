@@ -1,0 +1,65 @@
+TP02
+1.
+SELECT p.ID_P
+FROM spj
+JOIN p ON p.ID_P = spj.ID_P
+WHERE p.COLOR = 'Red';
+
+2.
+SELECT s.SNAME
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+WHERE spj.ID_P = 'P4';
+
+3.
+SELECT DISTINCT j.JNAME
+FROM j
+JOIN spj ON spj.ID_J = j.ID_J
+WHERE spj.ID_P = 'P3';
+
+4.
+SELECT DISTINCT j.JNAME
+FROM j
+JOIN spj ON spj.ID_J = j.ID_J
+WHERE spj.ID_S = 'S1';
+
+5.
+SELECT DISTINCT s.SNAME
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+WHERE spj.QTY BETWEEN 150 AND 250;
+
+6.
+SELECT s.SNAME NOM, p.PNAME PIECE,j.JNAME PROJET, spj.QTY QUANTITE 
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+JOIN p ON p.ID_P =spj.ID_P
+JOIN j ON j.ID_J = spj.ID_J;
+
+7.
+SELECT s.SNAME NOM, p.PNAME PIECE,j.JNAME PROJET, spj.QTY QUANTITE 
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+JOIN p ON p.ID_P =spj.ID_P
+JOIN j ON j.ID_J = spj.ID_J
+WHERE S.CITY = 'Paris';
+
+8.
+SELECT DISTINCT j.CITY 
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+JOIN j ON j.ID_J = spj.ID_J
+WHERE s.SNAME = 'Adams';
+
+9.
+SELECT DISTINCT p.PNAME
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+JOIN p ON p.ID_P = spj.ID_P
+WHERE p.WEIGHT < 18 AND s.CITY IN ('Rome','London');
+
+SELECT DISTINCT p.PNAME
+FROM spj
+JOIN s ON s.ID_S = spj.ID_S
+JOIN p ON p.ID_P = spj.ID_P
+WHERE p.WEIGHT < 18 AND (s.CITY = 'Rome' OR s.CITY = 'London');

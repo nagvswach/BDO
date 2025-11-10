@@ -1,0 +1,46 @@
+TP06
+
+1.
+a. pas legale
+b. pas legale
+c. pas legale
+
+Exo 2
+1.
+SELECT COUNT(*),spj.QTY
+FROM spj 
+GROUP BY spj.QTY;
+
+2.
+SELECT li.ID_S,COUNT(*)
+FROM spj li
+GROUP by li.ID_S;
+
+3.
+SELECT j.JNAME, SUM(spj.QTY)
+FROM spj
+JOIN j ON SPJ.ID_J = j.ID_J
+GROUP by j.ID_J,j.JNAME
+
+4.
+SELECT spj.ID_S,spj.ID_P,spj.ID_J,QTY * p.WEIGHT
+FROM spj
+JOIN p ON p.ID_P=spj.ID_P
+GROUP by spj.ID_S,spj.ID_P,spj.ID_J;
+
+5.
+SELECT spj.ID_J, SUM(QTY * p.WEIGHT)
+FROM spj
+JOIN p ON p.ID_P=spj.ID_P
+GROUP by spj.ID_J;
+
+6.
+SELECT MAX(QTY * p.WEIGHT)
+FROM spj
+JOIN p ON p.ID_P=spj.ID_P;
+
+7.
+SELECT spj.ID_P,SUM(spj.QTY)
+from spj
+GROUP BY spj.ID_P
+HAVING COUNT(spj.QTY) > 3
