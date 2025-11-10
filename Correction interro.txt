@@ -1,0 +1,6 @@
+SELECT *
+FROM spj li
+	JOIN p ON p.ID_p = li.ID_P
+	JOIN j on j.ID_J = li.ID_J
+	JOIN s ON s.ID_S = li.ID_S
+WHERE li.QTY >= 400 AND ( p.WEIGHT * 454 > 1000 OR J.CITY = "Paris" or s.CITY = 'Paris'
